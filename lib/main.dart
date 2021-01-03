@@ -1,6 +1,5 @@
 import 'package:FlutterBloc/features/consulta_cep/1.presentation/ConsultaCepComponents.dart';
 import 'package:FlutterBloc/features/consulta_cep/2.application/consultacep_bloc.dart';
-import 'package:FlutterBloc/features/consulta_cep/4.infrastructure/Repository/consultaCepRepository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
