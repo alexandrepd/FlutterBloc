@@ -1,7 +1,8 @@
-import 'package:FlutterBloc/features/consulta_cep/1.presentation/ConsultaCepComponents.dart';
-import 'package:FlutterBloc/features/consulta_cep/2.application/consultacep_bloc.dart';
+import 'package:FlutterBloc/features/consulta_cep/presentation/bloc/consultacep_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'features/consulta_cep/presentation/widgets/ConsultaCepComponents.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               EditCustom(_controller),
-              ButtonCustom('Click-me', _controller),
+              ButtonCustom('Consultar CEP', _controller),
               ResultCustom(),
             ],
           ),

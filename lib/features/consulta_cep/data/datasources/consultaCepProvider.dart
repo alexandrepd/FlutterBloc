@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:FlutterBloc/features/consulta_cep/3.domain/consultaCepModel.dart';
+import 'package:FlutterBloc/features/consulta_cep/data/models/consultaCepModel.dart';
 import 'package:http/http.dart' as http;
 
 class ConsultaCepProvider {

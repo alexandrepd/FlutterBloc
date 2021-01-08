@@ -12,6 +12,9 @@ class ConsultaCepFetchedState extends ConsultaCepState {
   ConsultaCepFetchedState({@required this.cepModel});
 }
 
-class ConsultaCepErrorState extends ConsultaCepState {}
+class ConsultaCepErrorState extends ConsultaCepState {
+  final String error;
+  ConsultaCepErrorState({@required this.error});
+}
 
 class ConsultaCepEmptyState extends ConsultaCepState {}
