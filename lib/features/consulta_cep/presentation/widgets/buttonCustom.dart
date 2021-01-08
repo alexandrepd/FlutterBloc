@@ -15,7 +15,6 @@ class ButtonCustom extends StatelessWidget {
           onPressed: () {
             BlocProvider.of<ConsultacepBloc>(context)
                 .add(SendCepEvent(cep: controller.text));
-            print('clicked');
           }),
     );
   }
