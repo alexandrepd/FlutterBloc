@@ -1,5 +1,5 @@
-import 'package:FlutterBloc/features/consulta_cep/3.domain/consultaCepModel.dart';
-import 'package:FlutterBloc/features/consulta_cep/4.infrastructure/Provider/consultaCepProvider.dart';
+import 'package:FlutterBloc/features/consulta_cep/data/datasources/consultaCepProvider.dart';
+import 'package:FlutterBloc/features/consulta_cep/data/models/consultaCepModel.dart';
 
 class ConsultaCepRepository {
   ConsultaCepProvider _consultaCepProvider = ConsultaCepProvider();
