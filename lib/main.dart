@@ -33,7 +33,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -44,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              EditCustom(_controller),
-              ButtonCustom('Consultar CEP', _controller),
+              EditCustom(),
               ResultCustom(),
+              Expanded(child: Container()),
             ],
           ),
         ),
