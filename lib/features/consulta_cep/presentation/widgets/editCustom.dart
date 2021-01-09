@@ -1,18 +1,30 @@
+import 'package:FlutterBloc/features/consulta_cep/presentation/bloc/consultacep_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditCustom extends StatelessWidget {
-  final TextEditingController _controller;
-
-  const EditCustom(this._controller);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
+    TextEditingController _controller = TextEditingController();
+    return Container(
+      // color: Colors.amber,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
         child: TextField(
+          maxLength: 8,
           controller: _controller,
           decoration: InputDecoration(
-              border: InputBorder.none, hintText: 'Digita o cep'),
+            enabledBorder: OutlineInputBorder(
+              borderSide: new BorderSide(color: Colors.teal),
+            ),
+            hintText: 'Digita o CEP',
+            suffixIcon: IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  BlocProvider.of<ConsultacepBloc>(context)
+                      .add(SendCepEvent(cep: _controller.text));
+                }),
+          ),
           keyboardType: TextInputType.number,
         ),
       ),

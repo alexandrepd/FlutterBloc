@@ -18,7 +18,7 @@ class ConsultaCepProvider {
     if (response.statusCode == successCode) {
       return ConsultaCepModel.fromJson(responseString);
     } else {
-      throw Exception('failed to load players');
+      throw Exception('Ops, estamos com problemas!');
     }
   }
 }
