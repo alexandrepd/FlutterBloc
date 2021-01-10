@@ -5,16 +5,14 @@ abstract class ConsultaCepState {}
 
 class ConsultaCepInitial extends ConsultaCepState {}
 
-class ConsultaCepFetchingState extends ConsultaCepState {}
+class ConsultaCepLoading extends ConsultaCepState {}
 
-class ConsultaCepFetchedState extends ConsultaCepState {
+class ConsultaCepLoaded extends ConsultaCepState {
   final ConsultaCepModel cepModel;
-  ConsultaCepFetchedState({@required this.cepModel});
+  ConsultaCepLoaded({@required this.cepModel});
 }
 
-class ConsultaCepErrorState extends ConsultaCepState {
+class ConsultaCepError extends ConsultaCepState {
   final String error;
-  ConsultaCepErrorState({@required this.error});
+  ConsultaCepError({@required this.error});
 }
-
-class ConsultaCepEmptyState extends ConsultaCepState {}

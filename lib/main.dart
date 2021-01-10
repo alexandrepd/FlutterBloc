@@ -2,6 +2,7 @@ import 'package:FlutterBloc/features/consulta_cep/presentation/bloc/consultacep_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'features/consulta_cep/data/repositories/consultaCepRepository.dart';
 import 'features/consulta_cep/presentation/widgets/ConsultaCepComponents.dart';
 
 void main() {
@@ -38,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: BlocProvider(
-        create: (_) => ConsultacepBloc(),
+        create: (_) => ConsultacepBloc(ConsultaCepRepository()),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
