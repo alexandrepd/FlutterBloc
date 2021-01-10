@@ -8,24 +8,25 @@ part 'consultacep_event.dart';
 part 'consultacep_state.dart';
 
 class ConsultacepBloc extends Bloc<ConsultacepEvent, ConsultaCepState> {
-  ConsultacepBloc() : super(ConsultaCepInitial());
+  final ConsultaCepRepository _consultaCepRepository;
+  ConsultacepBloc(this._consultaCepRepository) : super(ConsultaCepInitial());
 
   @override
   Stream<ConsultaCepState> mapEventToState(
     ConsultacepEvent event,
   ) async* {
     if (event is SendCepEvent) {
-      yield ConsultaCepFetchingState();
+      yield ConsultaCepLoading();
       try {
         ConsultaCepModel _model =
-            await ConsultaCepRepository().fetchPlayersByCep(event.cep);
+            await _consultaCepRepository.fetchPlayersByCep(event.cep);
         if (_model == null) {
-          yield ConsultaCepEmptyState();
+          yield ConsultaCepInitial();
         } else {
-          yield ConsultaCepFetchedState(cepModel: _model);
+          yield ConsultaCepLoaded(cepModel: _model);
         }
       } catch (e) {
-        yield ConsultaCepErrorState(error: e.toString());
+        yield ConsultaCepError(error: e.toString());
       }
     }
   }
