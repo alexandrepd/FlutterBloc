@@ -2,17 +2,22 @@ import 'package:FlutterBloc/features/consulta_cep/presentation/bloc/consultacep_
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class EditCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController _controller = TextEditingController();
+    var maskFormatter = new MaskTextInputFormatter(
+        mask: '#####-###', filter: {"#": RegExp(r'[0-9]')});
+
     return Container(
       // color: Colors.amber,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: TextField(
           inputFormatters: [
+            // maskFormatter
             CepFormatter(mask: '#####-###', separator: '-'),
           ],
           // maxLength: 8,
