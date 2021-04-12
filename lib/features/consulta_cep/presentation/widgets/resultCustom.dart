@@ -11,6 +11,7 @@ class ResultCustom extends StatelessWidget {
     return Expanded(
       flex: 0,
       child: Container(
+        margin: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
