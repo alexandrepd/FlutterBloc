@@ -1,5 +1,5 @@
-import 'package:FlutterBloc/features/consulta_cep/presentation/pages/consulta_cep_screen.dart';
 import 'package:flutter/material.dart';
+import 'features/zip_code/presentation/pages/search_zip_code_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FlutterBloc',
-      home: ConsultaCepScreen(title: 'FlutterBloc - Consulta CEP'),
+      home: SeachZipCodeScreen(title: 'FlutterBloc - Consulta CEP'),
     );
   }
 }
