@@ -1,41 +1,38 @@
-import 'package:FlutterBloc/features/consulta_cep/presentation/bloc/consultacep_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class EditCustom extends StatelessWidget {
+  final Function(String) getZipCode;
+
+  const EditCustom({Key key, this.getZipCode}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     TextEditingController _controller = TextEditingController();
-    var maskFormatter = new MaskTextInputFormatter(
-        mask: '#####-###', filter: {"#": RegExp(r'[0-9]')});
 
     return Container(
-      // color: Colors.amber,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: TextField(
-          inputFormatters: [
-            // maskFormatter
-            CepFormatter(mask: '#####-###', separator: '-'),
-          ],
-          // maxLength: 8,
-          controller: _controller,
-          decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderSide: new BorderSide(color: Colors.teal),
-            ),
-            hintText: 'Digita o CEP',
-            suffixIcon: IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  BlocProvider.of<ConsultacepBloc>(context)
-                      .add(SendCepEvent(cep: _controller.text));
-                }),
+      padding: const EdgeInsets.all(10.0),
+      child: TextField(
+        inputFormatters: [
+          CepFormatter(mask: '#####-###', separator: '-'),
+        ],
+        controller: _controller,
+        decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.teal),
           ),
-          keyboardType: TextInputType.number,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.teal),
+          ),
+          hintText: 'Digita o CEP',
+          suffixIcon: IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              getZipCode(_controller.text);
+              FocusScope.of(context).unfocus();
+            },
+          ),
         ),
+        keyboardType: TextInputType.number,
       ),
     );
   }
