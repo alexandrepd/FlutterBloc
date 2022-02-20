@@ -1,38 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc_zipcode_br/features/zip_code/presentation/bloc/zip_code_bloc.dart';
+import 'package:flutter_bloc_zipcode_br/services/service_locator.dart';
 
 class EditCustom extends StatelessWidget {
-  final Function(String) getZipCode;
+  final Function(TextEditingController) getController;
 
-  const EditCustom({Key key, this.getZipCode}) : super(key: key);
+  EditCustom({this.getController});
+
+  final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controller = TextEditingController();
-
     return Container(
       padding: const EdgeInsets.all(10.0),
-      child: TextField(
-        inputFormatters: [
-          CepFormatter(mask: '#####-###', separator: '-'),
+      child: Column(
+        children: [
+          TextField(
+            inputFormatters: [
+              CepFormatter(mask: '#####-###', separator: '-'),
+            ],
+            controller: _controller,
+            decoration: InputDecoration(
+              labelStyle: TextStyle(color: Colors.white),
+              floatingLabelStyle: TextStyle(color: Colors.white),
+              hintStyle: TextStyle(color: Colors.grey),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              hintText: 'Enter the zip code',
+              suffixIcon: IconButton(
+                icon: Icon(Icons.search, color: Colors.white),
+                onPressed: () {
+                  serviceLocator<ZipCodeBloc>()
+                      .add(SearchCepEvent(cep: _controller.text));
+                  FocusScope.of(context).unfocus();
+                },
+              ),
+            ),
+            keyboardType: TextInputType.number,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              TextButton.icon(
+                icon: Icon(Icons.delete),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(16.0),
+                  primary: Colors.white,
+                  textStyle: const TextStyle(fontSize: 20),
+                ),
+                onPressed: () {
+                  _controller.clear();
+                  serviceLocator<ZipCodeBloc>().add(ClearEvent());
+                },
+                label: const Text('Clear'),
+              ),
+              TextButton.icon(
+                icon: Icon(Icons.search),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(16.0),
+                  primary: Colors.white,
+                  textStyle: const TextStyle(fontSize: 20),
+                ),
+                onPressed: () {
+                  serviceLocator<ZipCodeBloc>()
+                      .add(SearchCepEvent(cep: _controller.text));
+                  FocusScope.of(context).unfocus();
+                },
+                label: const Text('Search'),
+              ),
+            ],
+          ),
         ],
-        controller: _controller,
-        decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.teal),
-          ),
-          hintText: 'Digita o CEP',
-          suffixIcon: IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              getZipCode(_controller.text);
-              FocusScope.of(context).unfocus();
-            },
-          ),
-        ),
-        keyboardType: TextInputType.number,
       ),
     );
   }

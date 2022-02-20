@@ -15,6 +15,8 @@ class ZipCodeBloc extends Bloc<ZipCodeEvent, ZipCodeState> {
   Stream<ZipCodeState> mapEventToState(ZipCodeEvent event) async* {
     if (event is SearchCepEvent) {
       yield* searchCep(event);
+    } else if (event is ClearEvent) {
+      yield ZipCodeInitial();
     }
   }
 

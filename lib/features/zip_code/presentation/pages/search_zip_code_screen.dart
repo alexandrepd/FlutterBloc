@@ -1,43 +1,33 @@
-import 'package:flutter_bloc_zipcode_br/features/zip_code/data/repositories/zip_code_repository.dart';
-import 'package:flutter_bloc_zipcode_br/features/zip_code/presentation/bloc/zip_code_bloc.dart';
-import 'package:flutter_bloc_zipcode_br/features/zip_code/presentation/widgets/editCustom.dart';
-import 'package:flutter_bloc_zipcode_br/features/zip_code/presentation/widgets/resultCustom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_zipcode_br/features/zip_code/presentation/widgets/ConsultaCepComponents.dart';
 
-class SeachZipCodeScreen extends StatefulWidget {
-  final String title;
-  SeachZipCodeScreen({Key key, this.title}) : super(key: key);
-
-  @override
-  _SeachZipCodeScreenState createState() => _SeachZipCodeScreenState();
-}
-
-class _SeachZipCodeScreenState extends State<SeachZipCodeScreen> {
+class SeachZipCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ZipCodeBloc>(
-      lazy: false,
-      create: (_) => ZipCodeBloc(zipCodeRepository: ZipCodeRepository()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
+    return Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Builder(builder: (context) {
-                return EditCustom(getZipCode: (zipCode) {
-                  BlocProvider.of<ZipCodeBloc>(context)
-                      .add(SearchCepEvent(cep: zipCode));
-                });
-              }),
-              ResultCustom(),
-            ],
-          ),
+      child: Container(
+        padding: EdgeInsets.only(top: 80.0),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.green[800],
+                Colors.green[700],
+                Colors.yellow[600],
+                Colors.yellow[400],
+              ]),
+        ),
+        child: Column(
+          children: [
+            Text('We only search Brazil zip code'),
+            Text('ex: 15370-496'),
+            EditCustom(),
+            ResultCustom(),
+          ],
         ),
       ),
-    );
+    ));
   }
 }

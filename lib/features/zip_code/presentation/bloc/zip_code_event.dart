@@ -7,3 +7,5 @@ class SearchCepEvent extends ZipCodeEvent {
   final String cep;
   SearchCepEvent({@required this.cep}) : assert(cep != null);
 }
+
+class ClearEvent extends ZipCodeEvent {}
