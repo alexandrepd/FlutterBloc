@@ -1,6 +1,7 @@
 import 'package:flutter_bloc_zipcode_br/features/zip_code/data/models/zip_code_model.dart';
 import 'package:flutter_bloc_zipcode_br/features/zip_code/presentation/bloc/zip_code_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_zipcode_br/services/service_locator.dart';
 
 import 'ConsultaCepComponents.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class ResultCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ZipCodeBloc, ZipCodeState>(
+      cubit: serviceLocator<ZipCodeBloc>(),
       builder: (context, state) {
         if (state is ZipCodeInitial) {
           return buildInitial();
@@ -45,7 +47,6 @@ class ResultCustom extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10),
       height: 100,
-      color: Colors.yellow,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

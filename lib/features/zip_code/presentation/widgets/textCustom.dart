@@ -8,7 +8,7 @@ class TextCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+      padding: EdgeInsets.only(left: 10.0),
       child: Container(
         child: Align(
           alignment: Alignment.centerLeft,
@@ -17,9 +17,12 @@ class TextCustom extends StatelessWidget {
               style: DefaultTextStyle.of(context).style,
               children: <TextSpan>[
                 TextSpan(
-                    text: '$label ',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: content),
+                  text: '$label ',
+                ),
+                TextSpan(
+                  text: content,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ),
